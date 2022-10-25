@@ -1,13 +1,14 @@
 package com.mispi.mispibot.config;
 
-import org.springframework.context.annotation.Configuration;
+
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
 
 // конфиг бота
 //@PropertySource для получения из файла bot.name и bot.token 
 //@Configuration для создания бина 
-@Configuration
+@Component
 @PropertySource("application.properties")
 public class MispiBotConfig {
     
@@ -16,6 +17,9 @@ public class MispiBotConfig {
     
     @Value("${bot.name}")
     private String botName;
+
+    @Value("${bot.path}")
+    private String botPath;
 
     public String getToken(){
         return getBotToken();
@@ -27,5 +31,9 @@ public class MispiBotConfig {
    
     public String getBotName(){
         return this.botToken;
+    }
+
+    public String getBotPath(){
+        return this.botPath;
     }
 }
