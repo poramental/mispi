@@ -4,8 +4,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.beans.factory.annotation.Value;
 
-
-
+// конфиг бота
+//@PropertySource для получения из файла bot.name и bot.token 
+//@Configuration для создания бина 
 @Configuration
 @PropertySource("application.properties")
 public class MispiBotConfig {

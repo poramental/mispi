@@ -13,10 +13,13 @@ import com.mispi.mispibot.service.MispiBot;
 import lombok.extern.slf4j.Slf4j;
 
 
+
+// инициализация бота аннотация @Slf4j для логов @Component для создания бина
 @Slf4j
 @Component
 public class MispiBotInitialization{
 
+    // подстановка бина бота из spring context 
     @Autowired
     MispiBot bot;
 
