@@ -1,30 +1,25 @@
 package com.mispi.mispibot.botapi;
 
-import java.util.*;
+
 
 
 
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.starter.SpringWebhookBot;
 
-import com.mispi.mispibot.commands.BotStartCommand;
+
 
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
+
 
 
 @Getter
 @Setter
-@Slf4j
+
 public class MispiBot extends SpringWebhookBot  {
     
     //bots config( bot token, bot name)
@@ -32,12 +27,6 @@ public class MispiBot extends SpringWebhookBot  {
     private String botName;
     private String botPath;
 
-    //list of commands ну тут нечего сказать больше.
-    private List<BotCommand> commandsList = new ArrayList<>();
-
-    // !!COMANDS!! //
-    private BotStartCommand startCommand = new BotStartCommand();
-    // ... //
 
     private TelegramFacade telegramFacade;
 
@@ -63,21 +52,6 @@ public class MispiBot extends SpringWebhookBot  {
         
     }
 
-
-
-    private void registerCommands(BotCommand command){
-        this.commandsList.add(command);
-
-    }
-
-
-    private void executeMessage(SendMessage message){
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-            log.error("execute message exception" + e.getMessage());
-        }
-    }
 
 
     @Override
