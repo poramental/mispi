@@ -1,17 +1,10 @@
 package com.mispi.mispibot.botapi;
 
 
-
-
-
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.starter.SpringWebhookBot;
-
-
-
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +12,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 public class MispiBot extends SpringWebhookBot  {
     
     //bots config( bot token, bot name)

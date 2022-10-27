@@ -9,13 +9,15 @@ import lombok.extern.slf4j.Slf4j;
 // команда /start 
 @Slf4j
 @Component
-public class BotStartCommand extends BotCommand  implements Commands{
+public class BotStartCommand extends BotCommand  {
 
     private final String commandName = "/start";
     
     private final String description = "hello";
 
+    
 
+    
     
 
     public String getCommandName() {
@@ -27,6 +29,22 @@ public class BotStartCommand extends BotCommand  implements Commands{
         return this.description;
     }
 
+    public String getCommandTextForUnRegisteredUser(String name){
+        final String answer = "Здравствуйте! Вы еще не зарегистрированы, что бы зарегистрироваться отправьте /regMISPI.";
+        return answer;
+    }
+
+    public String getCommandTextForRegisteredUser(String name){
+     
+        final String answer = "Здравствуйте,"+name+"! Вы уже были зарегистрированы.\n"
+                        +"Список команд:\n"
+                        +"/help - для получения списка команд с их описанием,\n"
+                        +"/зарегистрировать MISPI - для регистрации модуля на сервере.";
+
+        log.info("Replied to user " + name);
+        return answer;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -34,11 +52,9 @@ public class BotStartCommand extends BotCommand  implements Commands{
             ", description='" + getDescription() + "'" +
             "}";
     }
-    public String getCommandTextAnswer(String name) {
+  
 
-        String answer = "Hi, " + name + ", nice to meet you!";
-        log.info("Replied to user " + name);
-        return answer;
-    }
+
+
     
 }
