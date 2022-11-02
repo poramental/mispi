@@ -3,10 +3,10 @@ package com.mispi.mispibot.botapi.state;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.mispi.mispibot.models.User;
+import com.mispi.mispibot.models.AppUser;
 
 public class BotStateCache {
-    private Map<Long, User> usersAndStates = new HashMap<>();
+    private Map<Long, AppUser> usersAndStates = new HashMap<>();
     
 
     public Boolean isHaveState(long userId){
@@ -18,7 +18,7 @@ public class BotStateCache {
         return false;
     }
 
-    public void add(long id, User user){
+    public void add(long id, AppUser user){
         usersAndStates.put(id,user);
     }
 
@@ -30,7 +30,7 @@ public class BotStateCache {
         }
     }
 
-    public Iterable<User> getValues(){
+    public Iterable<AppUser> getValues(){
         return usersAndStates.values();
     }
 

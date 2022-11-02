@@ -20,13 +20,12 @@ public class Mispi {
     @Id
     @Column(name = "id")
     private long id;
-    @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="user_id")
-    private User user;
+    @Column(name = "user_id")
+    private long user;
     public Mispi(){
     }
 
-    public Mispi(long id,User user){
+    public Mispi(long id,long user){
         this.id = id;
         this.user = user;
         

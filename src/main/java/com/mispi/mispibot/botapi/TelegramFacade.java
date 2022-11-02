@@ -15,7 +15,8 @@ import com.mispi.mispibot.botapi.state.BotStateCache;
 import com.mispi.mispibot.commands.BotRegMispiCommand;
 import com.mispi.mispibot.commands.BotStartCommand;
 import com.mispi.mispibot.models.Mispi;
-import com.mispi.mispibot.models.User;
+import com.mispi.mispibot.models.AppUser;
+import com.mispi.mispibot.service.DAO.MispiDAO;
 import com.mispi.mispibot.service.DAO.UserDAO;
 import com.mispi.mispibot.service.DAO.Repositories.MispiRepository;
 import com.mispi.mispibot.service.DAO.Repositories.UserRepository;
@@ -30,12 +31,12 @@ public class TelegramFacade {
     BotStateCache stateCache = new BotStateCache();
 
     @Autowired
-    UserRepository userRepository;
-    @Autowired
-    MispiRepository mispiRepository;
+    UserDAO userDao;
+    // @Autowired
+    // MispiDAO mispiDao;
     BotStartCommand BotStartCommand = new BotStartCommand();
     BotRegMispiCommand BotRegMispiCommand = new BotRegMispiCommand();
-    UserDAO userDAO;
+    
     
     
     public BotApiMethod<?> handleUpdate(Update update) {
@@ -48,8 +49,11 @@ public class TelegramFacade {
             long userId = update.getMessage().getChatId();
             var messageFromUser = update.getMessage();
             if(messageFromUser.hasText()){
-                User user = new User();
+                AppUser user = new AppUser();
                 user.setId(userId);
+                user.setName(messageFromUser.getFrom().getFirstName());
+                System.out.println(user.toString());
+
                 System.out.println(messageFromUser.getText());
                 if(Objects.equal(messageFromUser.getText(),BotStartCommand.getCommandName())){
                     
@@ -61,6 +65,7 @@ public class TelegramFacade {
                     
                     user.setState(BotState.MISPINUM);
                     stateCache.add(userId,user);
+                    System.out.println(user.toString());
                     sendMessage.setText(BotRegMispiCommand.getCommandTextProcessLogin());
                     sendMessage.setChatId(String.valueOf(userId));
                     return sendMessage;
@@ -68,7 +73,10 @@ public class TelegramFacade {
                 }else if(stateCache.getStateById(userId) == BotState.MISPINUM){
                     try{
                         System.out.print(messageFromUser.getText());
-                        stateCache.delete(userId);
+                        user.setState(BotState.DEFAULT);
+                        
+                        userDao.createUser(user);
+                        // stateCache.delete(userId);
                         // Mispi mispi = new Mispi(Long.parseLong(messageFromUser.getText()),user);
                         // mispiRepository.save(mispi);
                         // user.addMispi(mispi);
@@ -79,6 +87,8 @@ public class TelegramFacade {
                         sendMessage.setChatId(String.valueOf(userId));
                         return sendMessage;
 
+                    }catch(Exception e ){
+                        System.out.println(e.getMessage());
                     }
                 }
             }

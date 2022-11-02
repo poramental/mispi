@@ -1,6 +1,6 @@
 package com.mispi.mispibot.service.DAO;
 
-import org.jvnet.hk2.annotations.Service;
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mispi.mispibot.models.Mispi;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class MispiDAO {
-
+    @Autowired
     private final MispiRepository mispiRepository;
 
     @Autowired

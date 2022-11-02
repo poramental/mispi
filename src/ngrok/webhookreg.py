@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 def getLinkAndToken():
-    path = Path(pathlib.Path.cwd(),'src','main','resources','application.properties')
+    path = Path(pathlib.Path.cwd(),'mispibot','src','main','resources','application.properties')
     print(str(path))
     paramlist = []
     with open(path) as file:

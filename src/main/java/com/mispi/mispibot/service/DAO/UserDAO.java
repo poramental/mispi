@@ -1,10 +1,10 @@
 package com.mispi.mispibot.service.DAO;
 
-import org.jvnet.hk2.annotations.Service;
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-import com.mispi.mispibot.models.User;
+import com.mispi.mispibot.models.AppUser;
 import com.mispi.mispibot.service.DAO.Repositories.UserRepository;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class UserDAO {
 
-    
+    @Autowired
     private final UserRepository userRepository;
 
     @Autowired
@@ -22,25 +22,25 @@ public class UserDAO {
     }
 
     
-    public User findByUserId(long id) {
+    public AppUser findByUserId(long id) {
         return userRepository.findById(id);
     }
 
-    public List<User> findAllUsers() {
+    public List<AppUser> findAllUsers() {
         return userRepository.findAll();
     }
 
-    public void removeUser(User user) {
+    public void removeUser(AppUser user) {
         userRepository.delete(user);
     }
 
 
-    public void save(User user) {
+    public void createUser(AppUser user) {
         userRepository.save(user);
     }
 
     public boolean isExist(long id) {
-        User user = findByUserId(id);
+        AppUser user = findByUserId(id);
         return user != null;
     }
 }
