@@ -37,4 +37,8 @@ public class BotStateCache {
     public void delete(long id){
         usersAndStates.remove(id);
     }
+
+    public AppUser getUserById(long id){
+        return usersAndStates.get(id);
+    }
 }

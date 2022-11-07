@@ -30,7 +30,8 @@ public class BotStartCommand extends BotCommand  {
     }
 
     public String getCommandTextForUnRegisteredUser(String name){
-        final String answer = "Здравствуйте! Вы еще не зарегистрированы, что бы зарегистрироваться отправьте /regMISPI.";
+        final String answer = "Здравствуйте,"+name+" ! Вы еще не зарегистрированы, что бы зарегистрироваться отправьте /regMISPI.";
+        log.info("Replied to user " + name);
         return answer;
     }
 
@@ -39,7 +40,7 @@ public class BotStartCommand extends BotCommand  {
         final String answer = "Здравствуйте,"+name+"! Вы уже были зарегистрированы.\n"
                         +"Список команд:\n"
                         +"/help - для получения списка команд с их описанием,\n"
-                        +"/зарегистрировать MISPI - для регистрации модуля на сервере.";
+                        +"/regMISPI - для регистрации модуля на сервере.";
 
         log.info("Replied to user " + name);
         return answer;

@@ -22,7 +22,7 @@ public class MispiDAO {
         return mispiRepository.findById(id);
     }
 
-    public List<Mispi> findAllUsers() {
+    public List<Mispi> findAllMispies() {
         return mispiRepository.findAll();
     }
 
@@ -31,8 +31,8 @@ public class MispiDAO {
     }
 
 
-    public void save(Mispi user) {
-        mispiRepository.save(user);
+    public void save(Mispi mispi) {
+        mispiRepository.save(mispi);
     }
 
     public boolean isExist(long id) {
