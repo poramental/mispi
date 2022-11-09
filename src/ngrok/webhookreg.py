@@ -26,13 +26,13 @@ def regTelegramWebHook(linkFromNgrok,token):
         valueslist.append(item)
         
     if valueslist[0]:
-        print("удачненько зарегались")
+        print("удачненько зарегались 👍")
     elif not valueslist[0]:
         print(response.text)
-        print("не зарегано")
+        print("не зарегано 👎")
     else:
         print(response.text)
-        print('непонял ошибку')
+        print('непонял ошибку☹️☹️')
 
 def main():
 

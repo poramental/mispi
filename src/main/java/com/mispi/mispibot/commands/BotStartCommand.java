@@ -15,10 +15,6 @@ public class BotStartCommand extends BotCommand  {
     
     private final String description = "hello";
 
-    
-
-    
-    
 
     public String getCommandName() {
         return this.commandName;

@@ -2,8 +2,10 @@ package com.mispi.mispibot.botapi;
 
 
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.starter.SpringWebhookBot;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,9 +36,7 @@ public class MispiBot extends SpringWebhookBot  {
         this.telegramFacade = telegramFacade;
     }
 
-    // main func answer to messages from users
-    // req это вся инфа по чату по пользователю и что он написал
-    // req прилетает пост запросом на сервер в виде json
+
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update req) {
         
@@ -44,7 +44,9 @@ public class MispiBot extends SpringWebhookBot  {
         
     }
 
-
+    public void sendMessage(SendMessage message) throws TelegramApiException{
+        execute(message);
+    }
 
     @Override
     public String getBotUsername() {
