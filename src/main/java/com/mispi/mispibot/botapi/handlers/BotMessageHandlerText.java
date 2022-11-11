@@ -50,8 +50,8 @@ public class BotMessageHandlerText {
             if(userDao.findByUserId(userId) == null){
                 sendMessage.setText(BotStartCommand.getCommandTextForUnRegisteredUser(messageFromUser.getFrom().getFirstName()));
             }
-            sendMessage.setText(BotStartCommand.getCommandTextForRegisteredUser(messageFromUser.getFrom().getFirstName()));
-            sendMessage.setChatId(String.valueOf(userId));
+            else{sendMessage.setText(BotStartCommand.getCommandTextForRegisteredUser(messageFromUser.getFrom().getFirstName()));
+                sendMessage.setChatId(String.valueOf(userId));}
             return sendMessage;
 
         }else if(Objects.equal(messageFromUser.getText(), BotRegMispiCommand.getCommandName())){
