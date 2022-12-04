@@ -22,7 +22,12 @@ public class BotRegMispiCommand extends BotCommand   {
     
     public String getCommandTextProcessLogin() {
         final String answer = "Отправьте мне номер вашего модуля.";
+        
         return answer;
+    }
+
+    public BotCommand getBotCommand(){
+        return new BotCommand(commandName,description);
     }
 }
 

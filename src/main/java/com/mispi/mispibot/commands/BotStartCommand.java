@@ -9,11 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 // команда /start 
 @Slf4j
 @Component
-public class BotStartCommand extends BotCommand  {
+public class BotStartCommand implements Command  {
 
     private final String commandName = "/start";
     
-    private final String description = "hello";
+    private final String description = "Стартовая команда.";
 
 
     public String getCommandName() {
@@ -34,9 +34,8 @@ public class BotStartCommand extends BotCommand  {
     public String getCommandTextForRegisteredUser(String name){
      
         final String answer = "Здравствуйте,"+name+"! Вы уже были зарегистрированы.\n"
-                        +"Список команд:\n"
-                        +"/help - для получения списка команд с их описанием,\n"
-                        +"/regMISPI - для регистрации модуля на сервере.";
+                        + "Выберете команду в меню.";
+                      
 
         log.info("Replied to user " + name);
         return answer;
@@ -45,11 +44,18 @@ public class BotStartCommand extends BotCommand  {
     @Override
     public String toString() {
         return "{" +
-            " command='" + getCommand() + "'" +
+            " command='" + getCommandName() + "'" +
             ", description='" + getDescription() + "'" +
             "}";
     }
-  
+
+
+    @Override
+    public BotCommand getBotCommand() {
+        return new BotCommand(commandName,description);
+    }
+    
+
 
 
 
